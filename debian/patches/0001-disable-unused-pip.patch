@@ -14,11 +14,11 @@ diff --git a/setup.cfg b/setup.cfg
 index ebe9506..4852d73 100644
 --- a/setup.cfg
 +++ b/setup.cfg
-@@ -33,7 +33,6 @@ project_urls =
- [options]
+@@ -37,7 +37,6 @@ project_urls =
+ include_package_data = true
  python_requires = >=3.7
  setup_requires =
 -  pip >= 10
-   pytest-runner
-   setuptools_git
  install_requires =
+   appdirs
+   paramiko
