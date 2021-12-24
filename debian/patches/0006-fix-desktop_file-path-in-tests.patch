@@ -1,0 +1,22 @@
+From: Nicholas D Steeves <nsteeves@gmail.com>
+Date: Sun, 15 Nov 2020 11:51:37 -0500
+Subject: fix desktop_file path in tests
+
+Forwarded: not-needed
+---
+ src/vorta/autostart.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/vorta/autostart.py b/src/vorta/autostart.py
+index d87dffb..99158d9 100644
+--- a/src/vorta/autostart.py
++++ b/src/vorta/autostart.py
+@@ -36,7 +36,7 @@ def open_app_at_startup(enabled=True):
+ 
+         is_flatpak = Path('/.flatpak-info').exists()
+ 
+-        with open(Path(__file__).parent / "assets/metadata/com.borgbase.Vorta.desktop") as desktop_file:
++        with open('/usr/share/applications/com.borgbase.Vorta.desktop') as desktop_file:
+             desktop_file_text = desktop_file.read()
+ 
+         # Find XDG_CONFIG_HOME unless when running in flatpak

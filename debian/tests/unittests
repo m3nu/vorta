@@ -1,0 +1,20 @@
+#!/bin/sh                                                                       
+set -efu
+
+pkg="vorta"
+export pys="$(py3versions -r 2> /dev/null)"
+export PYTHONPATH="$AUTOPKGTEST_TMP"/"$pkg"
+export HOME="$AUTOPKGTEST_TMP"/"$pkg"/home
+export XDG_RUNTIME_DIR="$AUTOPKGTEST_TMP"/"$pkg"/run
+
+mkdir -p "$PYTHONPATH" "$HOME" "$XDG_RUNTIME_DIR"
+chmod 700 "$XDG_RUNTIME_DIR"
+cp -a tests "$AUTOPKGTEST_TMP"/"$pkg"
+cd "$AUTOPKGTEST_TMP"/"$pkg"
+
+for py in $pys; do
+    echo "=== Testing with $py ==="
+    xvfb-run -a --server-args="-screen 0 1280x800x24+32" \
+             dbus-run-session \
+             -- "$py" -m pytest tests 2>&1
+done

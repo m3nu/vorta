@@ -1,0 +1,30 @@
+#!/usr/bin/make -f
+export PYBUILD_NAME=vorta
+export PYBUILD_TEST_PYTEST=1
+export PYS=$(shell $(py3versions -r 2> /dev/null))
+export QT_SELECT=qt5
+
+%:
+	dh $@ --buildsystem=pybuild
+
+override_dh_python3:
+	dh_python3
+	mkdir -p debian/vorta/usr/share/applications/ \
+	         debian/vorta/usr/share/metainfo/ \
+	         debian/vorta/usr/share/pixmaps/ \
+	         debian/vorta/usr/share/vorta/
+	make translations-to-qm
+	dh_install -X src/vorta/i18n/qm/.gitkeep src/vorta/i18n/qm/ \
+	   /usr/lib/python3/dist-packages/vorta/i18n/
+	mv debian/vorta/usr/lib/python3/dist-packages/vorta/assets/metadata/Screenshot-*.png \
+	   debian/vorta/usr/share/vorta/
+	mv debian/vorta/usr/lib/python3/dist-packages/vorta/assets/metadata/com.borgbase.Vorta.appdata.xml \
+	   debian/vorta/usr/share/metainfo/
+	mv debian/vorta/usr/lib/python3/dist-packages/vorta/assets/metadata/com.borgbase.Vorta.desktop \
+	   debian/vorta/usr/share/applications/
+	rmdir debian/vorta/usr/lib/python3/dist-packages/vorta/assets/metadata
+	install -m 644 src/vorta/assets/icons/icon.svg debian/vorta/usr/share/pixmaps/com.borgbase.Vorta.svg
+
+override_dh_auto_test:
+	xvfb-run -a --server-args="-screen 0 1280x800x24+32" \
+	         dbus-run-session dh_auto_test

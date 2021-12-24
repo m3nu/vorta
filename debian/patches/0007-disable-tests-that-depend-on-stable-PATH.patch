@@ -1,0 +1,36 @@
+From: Nicholas D Steeves <nsteeves@gmail.com>
+Date: Mon, 16 Nov 2020 11:36:12 -0500
+Subject: disable tests that depend on stable PATH
+
+Forwarded: no
+---
+ tests/test_misc.py | 2 +-
+ tests/test_repo.py | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/tests/test_misc.py b/tests/test_misc.py
+index 125ac15..86b947e 100644
+--- a/tests/test_misc.py
++++ b/tests/test_misc.py
+@@ -5,7 +5,7 @@ from PyQt5 import QtCore
+ from PyQt5.QtWidgets import QCheckBox
+ from pathlib import Path
+ 
+-
++@pytest.mark.skip
+ def test_autostart(qapp, qtbot):
+     ''' Check if file exists only on Linux, otherwise just check it doesn't crash '''
+     main = qapp.main_window
+diff --git a/tests/test_repo.py b/tests/test_repo.py
+index 4cda33e..5b4f36d 100644
+--- a/tests/test_repo.py
++++ b/tests/test_repo.py
+@@ -104,7 +104,7 @@ def test_repo_add_success(qapp, qtbot, mocker, borg_json_output):
+     assert keyring.get_password("vorta-repo", RepoModel.get(id=2).url) == LONG_PASSWORD
+     assert main.repoTab.repoSelector.currentText() == test_repo_url
+ 
+-
++@pytest.mark.skip
+ def test_ssh_dialog(qapp, qtbot, tmpdir):
+     main = qapp.main_window
+     main.repoTab.sshComboBox.setCurrentIndex(1)

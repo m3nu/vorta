@@ -1,0 +1,29 @@
+From: Nicholas D Steeves <nsteeves@gmail.com>
+Date: Tue, 12 Jan 2021 17:15:45 -0500
+Subject: use python3 in Makefile
+
+---
+ Makefile | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 0570f91..72e283a 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,6 +1,6 @@
+ export VORTA_SRC := src/vorta
+ export FLATPAK_XML := src/vorta/assets/metadata/com.borgbase.Vorta.appdata.xml
+-VERSION := $(shell python -c "from src.vorta._version import __version__; print(__version__)")
++VERSION := $(shell python3 -c "from src.vorta._version import __version__; print(__version__)")
+ 
+ .PHONY : help
+ .DEFAULT_GOAL := help
+@@ -26,7 +26,7 @@ github-release: dist/Vorta.dmg  ## Add new Github release and attach macOS DMG
+ 	git checkout master
+ 
+ pypi-release: translations-to-qm  ## Upload new release to PyPi
+-	python setup.py sdist
++	python3 setup.py sdist
+ 	twine upload dist/vorta-${VERSION}.tar.gz
+ 
+ bump-version:  ## Tag new version. First set new version number in src/vorta/_version.py

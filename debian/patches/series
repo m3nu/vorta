@@ -1,0 +1,5 @@
+0001-disable-unused-pip.patch
+0006-fix-desktop_file-path-in-tests.patch
+0007-disable-tests-that-depend-on-stable-PATH.patch
+0008-fix-generic-privacy-breach-in-appdata.patch
+0011-use-python3-in-Makefile.patch

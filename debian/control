@@ -1,0 +1,56 @@
+Source: vorta
+Section: utils
+Priority: optional
+Maintainer: Debian Python Team <team+python@tracker.debian.org>
+Uploaders: Nicholas D Steeves <sten@debian.org>
+Build-Depends: debhelper-compat (= 13),
+               dh-python,
+               dh-sequence-python3,
+               python3-all,
+               python3-pip,
+               python3-setuptools,
+               borgbackup             <!nocheck>,
+               dbus-daemon            <!nocheck>,
+               libqt5svg5             <!nocheck>,
+               openssh-client         <!nocheck>,
+               python3-appdirs        <!nocheck>,
+               python3-paramiko (>= 2.6.0-1~) <!nocheck>,
+               python3-peewee         <!nocheck>,
+               python3-psutil         <!nocheck>,
+               python3-pyqt5          <!nocheck>,
+               python3-pytest         <!nocheck>,
+               python3-pytestqt       <!nocheck>,
+               qtchooser,
+               qttools5-dev-tools,
+               xauth                  <!nocheck>,
+               xvfb                   <!nocheck>,
+Rules-Requires-Root: no
+Standards-Version: 4.5.1
+Homepage: https://vorta.borgbase.com
+Vcs-Browser: https://salsa.debian.org/python-team/packages/vorta
+Vcs-Git: https://salsa.debian.org/python-team/packages/vorta.git
+Testsuite: autopkgtest-pkg-python
+# nonsuperficial tests manually configured in debian/tests/unittests
+
+Package: vorta
+Architecture: all
+Depends: ${python3:Depends}, ${misc:Depends},
+         libqt5svg5
+Recommends: borgbackup
+Description: Desktop Client for Borg Backup
+ Vorta is a GUI backup client for macOS and Linux desktops. It enables less
+ technical users, or users who prefer GUIs, to benefit from the mighty
+ BorgBackup.  Now anyone can easily and conveniently protect their data from
+ disk failure, ransomware, theft, and user error.
+ .
+ Features:
+   * Encrypted, deduplicated, and compressed backups via Borg.
+   * Backup to disk (DAS: direct-attached storage), server (NAS: network
+     attached storage), or a hosting service that supports Borg (BorgBase,
+     rsync.net, et al).
+   * Backups over SSH using "borg server".
+   * Profiles for grouping source folders, backup destinations, and schedules.
+   * Unified interface for viewing and managing all archives.
+   * Enhanced ease of use when restoring individual files.
+   * Built-in backup scheduling method that does not depend on system-level
+     facilities such as cron or systemd timers.

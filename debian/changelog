@@ -1,0 +1,118 @@
+vorta (0.8.2-1) UNRELEASED; urgency=medium
+
+  * New upstream release.
+  * Rebase patch queue onto this release.
+  * Drop Build-Depends that are no longer required: python3-apscheduler,
+
+ -- Nicholas D Steeves <sten@debian.org>  Sun, 14 Nov 2021 11:52:09 -0500
+
+vorta (0.7.8-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Nicholas D Steeves <sten@debian.org>  Sun, 29 Aug 2021 09:20:40 -0400
+
+vorta (0.7.7-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Rebase patch queue onto this release.
+
+ -- Nicholas D Steeves <sten@debian.org>  Wed, 18 Aug 2021 14:52:50 -0400
+
+vorta (0.7.5-1) unstable; urgency=medium
+
+  * New upstream release.
+    af2d6a9  v0.7.5 Bump version to v0.7.5, update translations
+    c66b102  Use json mode to list archive files. By @rblenis (#885)
+    bd3c479  Add untranslated strings. By @samuel-w (#902)
+    f7533b7  Disable codecov comments (#904)
+    6d8ad90  Allow…fully disab[ling] the system keychain. (#898)
+    - This commit also switches from PyQT mutexes and locks to the stdlib
+      ones, finally solving CI failures on armhf.  This release shows 100%
+      success over 10 runs of built-time tests on able.debian.org, and the
+      same rate of success for formal DebCI on LXC on a virtualised armhf
+      machine (Closes: #983265).
+    - This commit also cleans up the tray applet, allowing the application to
+      cleanly exit, thus solving the SIGSEGV (Closes: #978105).
+    824707c  Fix issue with unassigned self.handle (#899)
+  * Rebase patch queue onto this release:
+    - Drop 0006-Fix-issue-with-unassigned-self.handle-899.patch
+      (it's already part of this release).
+
+ -- Nicholas D Steeves <sten@debian.org>  Fri, 05 Mar 2021 16:05:28 -0500
+
+vorta (0.7.4-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Cherry pick 0006-Fix-issue-with-unassigned-self.handle-899.patch from
+    upstream (needed when kwallet is unavailable).
+
+ -- Nicholas D Steeves <sten@debian.org>  Mon, 01 Mar 2021 07:05:21 -0500
+
+vorta (0.7.3-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Rebase patch queue onto 0.7.3.
+  * Drop patches that are already part of this release:
+    - 0002-Reduce-icon-memory-usage.-By-samuel-w-656.patch
+    - 0003-Set-all-icons-to-same-height-660.patch
+    - 0004-Set-application-name-666.patch
+    - 0005-Properly-catch-DBusException.-By-samuel-w-670.patch
+    - 0009-Add-valid-copyright-header-to-Johan-Rade-s-work.patch
+  * Drop 0010-Increase-timeouts-for-all-self-tests.patch, which became no
+    longer necessary as a result of upstream's stabilisation work.
+  * Update my email address.
+  * Adjust rules to install icon.svg from new upstream location.
+
+ -- Nicholas D Steeves <sten@debian.org>  Thu, 18 Feb 2021 10:07:10 -0500
+
+vorta (0.7.1-4) unstable; urgency=medium
+
+  * Add forwarded header to 0010-Increase-timeouts-for-all-self-tests.patch
+  * Make vorta backportable to buster (Closes: #979987)
+    - Add qtchooser to build-deps because buster has both qt4 and qt5.
+    - Explicitly export QT_SELECT=qt5 in rules.
+    - Define python3-pyqt5 as the package that provides pyqt5 using
+      py3dist-overrides.
+    - Add 0011-use-python3-in-Makefile.path because dh-python and/or pytest
+      in buster appears to require the following type of patch:
+      python->python3, even when the Makefile isn't used at all.
+    - Vorta requires python3-paramiko ≥ 2.6.0; this is implicitly fulfilled
+      in bullseye, however it should be added to control for maximal
+      correctness; this dep is fulfilled by the existing buster backport of
+      Paramiko.
+  * Create debian/clean, and cleanup all generated translations.
+  * Enhance extend-diff-ignore to properly match egg-info files in a subdir,
+    and additionally to match translations, to defend against the case where
+    upstream begins to ship them pregenerated.  Thanks to Jessica Clarke for
+    help with this, and for teaching an introduction to intermediate/advanced
+    regexes!
+
+ -- Nicholas D Steeves <nsteeves@gmail.com>  Sat, 16 Jan 2021 23:12:14 -0500
+
+vorta (0.7.1-3) unstable; urgency=medium
+
+  [ Debian Janitor ]
+  * Set upstream metadata fields: Bug-Database, Bug-Submit, Repository,
+    Repository-Browse.
+
+  [ Nicholas D Steeves ]
+  * Minor enhancements to long description.
+  * Add 0010-Increase-timeouts-for-all-self-tests.patch (Closes: #976134).
+
+ -- Nicholas D Steeves <nsteeves@gmail.com>  Fri, 25 Dec 2020 17:26:40 -0500
+
+vorta (0.7.1-2) unstable; urgency=medium
+
+  * Do source only upload so the package can migrate to testing.
+  * Enable superficial autopkgtests via "autopkgtest-pkg-python" in
+    addition to the manually configured ones.
+  * Declare Standards-Version: 4.5.1 (no changes required).
+
+ -- Nicholas D Steeves <nsteeves@gmail.com>  Fri, 27 Nov 2020 13:31:34 -0500
+
+vorta (0.7.1-1) unstable; urgency=medium
+
+  * Initial release (Closes: #922961).
+
+ -- Nicholas D Steeves <nsteeves@gmail.com>  Mon, 16 Nov 2020 15:20:37 -0500

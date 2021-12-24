@@ -1,0 +1,34 @@
+From: Nicholas D Steeves <nsteeves@gmail.com>
+Date: Mon, 16 Nov 2020 11:54:14 -0500
+Subject: fix generic privacy breach in appdata
+
+Forwarded: not-needed
+---
+ src/vorta/assets/metadata/com.borgbase.Vorta.appdata.xml | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/src/vorta/assets/metadata/com.borgbase.Vorta.appdata.xml b/src/vorta/assets/metadata/com.borgbase.Vorta.appdata.xml
+index c0aa4bf..2d24c76 100644
+--- a/src/vorta/assets/metadata/com.borgbase.Vorta.appdata.xml
++++ b/src/vorta/assets/metadata/com.borgbase.Vorta.appdata.xml
+@@ -27,16 +27,16 @@
+   </description>
+   <screenshots>
+     <screenshot type="default">
+-      <image height="637" width="800">https://raw.githubusercontent.com/borgbase/vorta/master/src/vorta/assets/metadata/Screenshot-1-Repository.png</image>
++      <image height="637" width="800">/usr/share/vorta/Screenshot-1-Repository.png</image>
+     </screenshot>
+     <screenshot type="default">
+-      <image height="637" width="800">https://raw.githubusercontent.com/borgbase/vorta/master/src/vorta/assets/metadata/Screenshot-2-Sources.png</image>
++      <image height="637" width="800">/usr/share/vorta/Screenshot-2-Sources.png</image>
+     </screenshot>
+     <screenshot type="default">
+-      <image height="637" width="800">https://raw.githubusercontent.com/borgbase/vorta/master/src/vorta/assets/metadata/Screenshot-3-Schedule.png</image>
++      <image height="637" width="800">/usr/share/vorta/Screenshot-3-Schedule.png</image>
+     </screenshot>
+     <screenshot type="default">
+-      <image height="637" width="800">https://raw.githubusercontent.com/borgbase/vorta/master/src/vorta/assets/metadata/Screenshot-4-Archives.png</image>
++      <image height="637" width="800">/usr/share/vorta/Screenshot-4-Archives.png</image>
+     </screenshot>
+   </screenshots>
+   <releases>
