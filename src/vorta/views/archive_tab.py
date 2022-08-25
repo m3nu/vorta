@@ -32,7 +32,7 @@ from vorta.borg.prune import BorgPruneJob
 from vorta.borg.rename import BorgRenameJob
 from vorta.borg.umount import BorgUmountJob
 from vorta.store.models import ArchiveModel, BackupProfileMixin
-from vorta.utils import choose_file_dialog, format_archive_name, get_asset, get_mount_points, pretty_bytes, borg_compat
+from vorta.utils import choose_file_dialog, format_archive_name, get_asset, get_mount_points, pretty_bytes
 from vorta.views import diff_result, extract_dialog
 from vorta.views.diff_result import DiffResultDialog, DiffTree
 from vorta.views.extract_dialog import ExtractDialog, ExtractTree
@@ -900,7 +900,6 @@ class ArchiveTab(ArchiveTabBase, ArchiveTabUI, BackupProfileMixin):
 
     def rename_action(self):
         profile = self.profile()
-
 
         archive_name = self.selected_archive_name()
         if archive_name is not None:
