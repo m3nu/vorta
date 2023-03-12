@@ -121,7 +121,6 @@ class VortaDarwinKeyring(VortaKeyring):
             logger.debug(f"Found password for repo {repo_url}")
             SecKeychainItemDelete(keychain_item, None)
 
-
     @property
     def is_unlocked(self):
         kSecUnlockStateStatus = 1
