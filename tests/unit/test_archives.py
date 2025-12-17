@@ -197,9 +197,14 @@ def test_inline_archive_rename(qapp, qtbot, mocker, borg_json_output, archive_en
     qtbot.mouseClick(tab.archiveTable.viewport(), QtCore.Qt.MouseButton.LeftButton, pos=pos)
     assert tab.bRename.isEnabled()
     qtbot.mouseDClick(tab.archiveTable.viewport(), QtCore.Qt.MouseButton.LeftButton, pos=pos)
-    tab.archiveTable.viewport().focusWidget().setText("")
-    qtbot.keyClicks(tab.archiveTable.viewport().focusWidget(), new_archive_name)
-    qtbot.keyClick(tab.archiveTable.viewport().focusWidget(), QtCore.Qt.Key.Key_Return)
+
+    # Wait for edit mode to activate - focusWidget becomes available when editing
+    qtbot.waitUntil(lambda: tab.archiveTable.viewport().focusWidget() is not None, timeout=5000)
+
+    editor = tab.archiveTable.viewport().focusWidget()
+    editor.setText("")
+    qtbot.keyClicks(editor, new_archive_name)
+    qtbot.keyClick(editor, QtCore.Qt.Key.Key_Return)
 
     # Successful rename case
     qtbot.waitUntil(lambda: tab.archiveTable.model().index(0, 4).data() == new_archive_name, **pytest._wait_defaults)
